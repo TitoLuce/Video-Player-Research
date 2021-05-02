@@ -24,7 +24,7 @@ Pre-rendered cutscenes are animated and rendered by the game's developers, and t
 
 ![TBOI Prerendered Cutscene](https://thumbs.gfycat.com/ExcitableMediumChihuahua-size_restricted.gif)
 
--Real time cutscenes 
+- Real time cutscenes 
 Real time cutscenes are rendered on-the-fly using the same game engine as the graphics during gameplay. This technique is also known as Machinima/Machinema.
 
 These are usually of much lower quality than pre-rendered cutscenes, but can adapt to the game's state. For example, some games allow the player character to wear several different outfits, and appear in cutscenes wearing the outfit the player has chosen, and sometimes even give players control over camera movement during them.
