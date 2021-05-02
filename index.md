@@ -49,6 +49,8 @@ Video files are formats used to store digital video data on a computer system, u
 
 Due to the extensive amount of containers, which in turn are usually capable of containing multiple video & audio coding formats, media players with high compatibility usually end up being a coding hell due to the fact that they have to keep in mind the many formats within the many containers, which usually are not easy to identify, and therefore require a lot of knowledge, time & patience to make.
 
+![File Formats](https://jingzhi.space/wp-content/uploads/2020/05/file-formats.png)
+
 Furthermore, to do all of this we need the use of codecs, which are programs or pieces of hardware that pack and compress data (Encode) and/or takes packed data and unpackages it (Decode). This is necessary due to the fact that video & music files are really big, and in consequence, are hard to transfer & store.
 
 And just as there are many containers & formats, there are also many types of different codecs, which may bre preferable in different situations.
@@ -87,33 +89,133 @@ VP8 & VP9 are free video codecs owned by Google, covered by patents that Google 
 
 ### Implementation in code
 
+Now that I have explained the basics of video files & codecs, I will proceed to talk about the implementation of the video player in Visual Studio. And I will be using the aforementioned free codec Theora. Furthermore, I will be using a library called TheoraPlay to play encoded videos as SDL_Textures which is free to use & unencumbered
 
+The implementation is a bit extensive & has many new functions but  the summarised version would be:
 
+1. Call the Load function to load the desired video (The format container used will be .ogv)
+2. Upon loading, Update video will take care of playing videos at the right time, updating the textures in the right format & freeing the video frame once they have been updated, and will then reprocess the audio, as it is necessary. At the same time, AudioCallback & QueueAudio will take care of filling the audioQueue & audioQueueTail with the correct audio properties so that sound may be played well.
+3. Through the use of IsPlaying, once the videois finished, it will be destroyed.
 
-```markdown
-Syntax highlighted code block
+As an extra, I have added a function to skip the video by pressing spacebar.
 
-# Header 1
-## Header 2
-### Header 3
+### Possible improvements
 
-- Bulleted
-- List
+- Due to how complicated game video players are to make in Visual Studio, there are many options I have not been able to add due to lack of expertise and time. Such as:
+1. A pause function
+2. A method of replaying the video or playing multiple videos (Even at the same time), as as of right now only one video can be played at a time and only once.
+3. A method to scale videos regardless of quality, as the video player currently doesn't scale the video to the window.
+4. A method to easily modify the volume, as it is currently set to a specific amount.
 
-1. Numbered
-2. List
+### Exercises
 
-**Bold** and _Italic_ and `Code` text
+### TODO 1
+Use THEORAPLAY_Decoder & THEORAPLAY_startDecodeFile to decode the format.
+Hint: THEORAPLAY_startDecodeFile(File path, number of frames(Set to 30), Format too decode (THEORAPLAY_VIDFMT_IYUV)).
 
-[Link](url) and ![Image](src)
+```cpp
+	THEORAPLAY_Decoder* decoder = THEORAPLAY_startDecodeFile(file, 30, THEORAPLAY_VIDFMT_IYUV);
+	if (!decoder)
+	{
+		LOG("Failed to start decoding file");
+		return 0;
+	}
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
+### TODO 2
+Create a video & audio buffer (THEORAPLAY_VideoFrame & THEORAPLAY_AudioPacket) and fill them with THEORAPLAY_getAudioand THEORAPLAY_getVideo.
 
-### Jekyll Themes
+```cpp
+	const THEORAPLAY_AudioPacket* audio = NULL;
+	const THEORAPLAY_VideoFrame* video = NULL;
 
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/TitoLuce/Video-Player-Research/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
+	while (!audio)
+	{
+		audio = THEORAPLAY_getAudio(decoder);
+	}
+	while (!video)
+	{
+		if (!video) video = THEORAPLAY_getVideo(decoder);
+	}
+```
 
-### Support or Contact
+### TODO 3
+In case of error, free the audio & video buffers & stop the decoding.
 
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+```cpp
+	if (overlay == 0)
+	{
+		THEORAPLAY_freeAudio(audio);
+		THEORAPLAY_freeVideo(video);
+		THEORAPLAY_stopDecode(decoder);
+		return 0;
+	}
+  .
+  .
+  .
+	if (SDL_OpenAudio(&player->audioSpec, NULL) != 0 )
+	{
+		THEORAPLAY_freeAudio(audio);
+		THEORAPLAY_freeVideo(video);
+		THEORAPLAY_stopDecode(decoder);
+		return 0;
+	}
+```
+
+### TODO 4
+Get & process the video data from the decoder.
+
+```cpp
+		if (!vid->video)
+		{
+			vid->video = THEORAPLAY_getVideo(vid->decoder);
+		}		
+```
+
+### TODO 5
+Just like the TODO 3, free the video & audio buffers & stop the decoding, but also destroy the texture.
+
+```cpp
+void Video::DestroyVideo(int video)
+{
+	Video* vid = (Video*)video;
+
+	while (audioQueue != NULL)
+	{
+		SDL_LockAudio();
+		SDL_UnlockAudio();
+		SDL_Delay(10);
+	}
+
+	SDL_DestroyTexture(vid->texture);
+	THEORAPLAY_freeVideo(vid->video);
+	THEORAPLAY_freeAudio(vid->audio);
+	THEORAPLAY_stopDecode(vid->decoder);
+}
+```
+
+### TODO 6
+Use the video's load function and save it to the video variable (You will need the file pathing & the renderer)
+
+```cpp
+	if (app->input->GetKey(SDL_SCANCODE_RETURN) == KEY_DOWN && video == 0)
+	{
+		video = app->video->Load("Assets/Videos/Vibin.ogv", app->render->renderer);
+	}
+```
+
+### SOURCES
+
+https://maciadalmau.github.io/Video-Player-Research/
+https://axelalavedra.github.io/Video-Player-Research/
+https://en.wikipedia.org/wiki/Cutscene
+https://en.wikipedia.org/wiki/Codec
+https://www.gamasutra.com/view/news/170671/Indepth_Playing_with_video.php
+https://en.wikipedia.org/wiki/Video_file_format
+https://www.theora.org/downloads/
+https://icculus.org/theoraplay/
+
+These were used as references for the code:
+
+https://glusoft.com/tutorials/sdl2/playing-theora-video
+https://github.com/maciadalmau/Video-Player-Research
