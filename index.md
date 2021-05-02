@@ -218,4 +218,5 @@ https://icculus.org/theoraplay/
 These were used as references for the code:
 
 https://glusoft.com/tutorials/sdl2/playing-theora-video
+
 https://github.com/maciadalmau/Video-Player-Research
