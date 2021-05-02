@@ -95,7 +95,7 @@ The implementation is a bit extensive & has many new functions but  the summaris
 
 1. Call the Load function to load the desired video (The format container used will be .ogv)
 2. Upon loading, Update video will take care of playing videos at the right time, updating the textures in the right format & freeing the video frame once they have been updated, and will then reprocess the audio, as it is necessary. At the same time, AudioCallback & QueueAudio will take care of filling the audioQueue & audioQueueTail with the correct audio properties so that sound may be played well.
-3. Through the use of IsPlaying, once the videois finished, it will be destroyed.
+3. Through the use of IsPlaying, once the video is finished, it will be destroyed.
 
 As an extra, I have added a function to skip the video by pressing spacebar.
 
