@@ -6,3 +6,10 @@ Hello, I am Arnau Lucena Cobo, and I welcome you to my personal research on how 
 
 - Return: Start video.
 - Spacebar: Skip video
+
+
+## License
+
+This project is licensed under an unmodified MIT license, which is an OSI-certified license that allows static linking with closed source software. Check [LICENSE](LICENSE) for further details.
+
+Additional licenses will be included next to their respective assets inside the game documents.
