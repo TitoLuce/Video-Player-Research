@@ -220,6 +220,7 @@ void SDLCALL Video::AudioCallback(void* userdata, Uint8* stream, int len)
 		if (cpy > (len / sizeof(Sint16)))
 			cpy = len / sizeof(Sint16);
 
+		//Audio frequency
 		for (i = 0; i < cpy; i++)
 		{
 			const float val = *(src++);
