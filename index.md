@@ -207,12 +207,19 @@ Use the video's load function and save it to the video variable (You will need t
 ### SOURCES
 
 https://maciadalmau.github.io/Video-Player-Research/
+
 https://axelalavedra.github.io/Video-Player-Research/
+
 https://en.wikipedia.org/wiki/Cutscene
+
 https://en.wikipedia.org/wiki/Codec
+
 https://www.gamasutra.com/view/news/170671/Indepth_Playing_with_video.php
+
 https://en.wikipedia.org/wiki/Video_file_format
+
 https://www.theora.org/downloads/
+
 https://icculus.org/theoraplay/
 
 These were used as references for the code:
