@@ -1,6 +1,6 @@
-## Welcome to GitHub Pages
+## Introduction
 
-You can use the [editor on GitHub](https://github.com/TitoLuce/Video-Player-Research/edit/gh-pages/index.md) to maintain and preview the content for your website in Markdown files.
+Hello, I am Arnau Lucena Cobo, and I welcome you to my personal research on how to make a Video Player for video games in Visual Studio, assigned by [Raysan](https://github.com/raysan5) in the Project 2 subject at the Video Game Design & Development Degree in CITM, UPC
 
 Whenever you commit to this repository, GitHub Pages will run [Jekyll](https://jekyllrb.com/) to rebuild the pages in your site, from the content in your Markdown files.
 
