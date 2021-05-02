@@ -1,0 +1,42 @@
+<!-- Config file for the game -->
+<!-- L01: DONE 1: Create configuration file-->
+<config>
+  <app framerateCap ="60">
+    <title>Game Development Testbed</title>
+    <organization>UPC</organization>
+  </app>
+
+  <renderer>
+    <vsync value="true"/>
+  </renderer>
+
+  <window>
+    <resolution width="640" height="360" scale="1"/>
+    <fullscreen value="false"/>
+    <borderless value="false"/>
+    <resizable value="false"/>
+    <fullscreen_window value="false"/>
+  </window>
+  <map>
+    <folder>Assets/Maps/</folder>
+  </map>
+  <input>
+    <select keyId="29" padId="0">select</select>
+    <cancel keyId="27" padId="1">cancel</cancel>
+    <menu keyId="6" padId="6">menu</menu>
+    <up keyId="82" padId="11">up</up>
+    <down keyId="81" padId="12">down</down>
+    <left keyId="80" padId="13">left</left>
+    <right keyId="79" padId="14">right</right>
+  </input>
+  <guiManager>
+    <folderTexture>Assets/Textures/GUI/</folderTexture>
+    <folderAudio>Assets/Audio/Fx/</folderAudio>
+    <folderFonts>Assets/Fonts/</folderFonts>
+  </guiManager>
+  <entityManager>
+    <folderTexture>Assets/Textures/</folderTexture>
+    <folderAudioFx>Assets/Audio/Fx/</folderAudioFx>
+    <folderMap>Assets/Map/</folderMap>
+  </entityManager>
+</config>
