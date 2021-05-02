@@ -31,7 +31,7 @@ These are usually of much lower quality than pre-rendered cutscenes, but can ada
 
 Real time cutscenes are rendered on the fly using the game's engine as the graphics during gameplay
 
-<iframe width="1280" height="720" src="https://www.youtube.com/embed/g9Q5g_orycA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/g9Q5g_orycA" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 ```markdown
 Syntax highlighted code block
