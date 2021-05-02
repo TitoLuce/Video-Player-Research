@@ -28,13 +28,14 @@ bool Video::CleanUp()
 int Video::Load(const char* file, SDL_Renderer* renderer)
 {
 	//TODO 1: Use THEORAPLAY_Decoder & THEORAPLAY_startDecodeFile to decode the format
+	//Hint: THEORAPLAY_startDecodeFile(File path, number of frames(Set to 30), Format too decode (THEORAPLAY_VIDFMT_IYUV))
 
 
 
 	//TODO 2: Create a video & audio buffer (THEORAPLAY_VideoFrame & THEORAPLAY_AudioPacket) and fill them with THEORAPLAY_getAudioand THEORAPLAY_getVideo.
 
 
-
+	//Obtain texture with the corresponding format to render the video
 	SDL_Texture* overlay = SDL_CreateTexture(renderer, SDL_PIXELFORMAT_YV12, SDL_TEXTUREACCESS_STREAMING, video->width, video->height);
 	if (overlay == 0)
 	{
@@ -54,7 +55,7 @@ int Video::Load(const char* file, SDL_Renderer* renderer)
 	player->baseticks = SDL_GetTicks();
 	player->framems = (video->fps == 0.0) ? 0 : ((Uint32)(1000.0 / video->fps));
 
-	//Load audio specs
+	//Load audio specs to play audio
 	memset(&player->audioSpec, '\0', sizeof(SDL_AudioSpec));
 	player->audioSpec.freq = audio->freq;
 	player->audioSpec.format = AUDIO_S16SYS;
@@ -121,6 +122,7 @@ SDL_Texture* Video::UpdateVideo(int videoId)
 				LOG("WARNING: Playback can't keep up!");
 				return NULL;
 			}
+			//After getting the right frame we update the texture, in the right format
 			else
 			{
 				int halfWidth = vid->video->width / 2;
@@ -131,6 +133,7 @@ SDL_Texture* Video::UpdateVideo(int videoId)
 
 				SDL_UpdateYUVTexture(vid->texture, NULL, y, vid->video->width, u, halfWidth, v, halfWidth);
 			}
+			//After the texture is updated we can free the video frame
 			THEORAPLAY_freeVideo(vid->video);
 			vid->video = NULL;
 		}
@@ -165,6 +168,7 @@ int Video::IsPlaying(int video)
 	return THEORAPLAY_isDecoding(((Video*)video)->decoder);
 }
 
+//Fill the audioQueue & audioQueueTail
 void Video::QueueAudio(const THEORAPLAY_AudioPacket* audio)
 {
 	AudioQueue* item = (AudioQueue*)malloc(sizeof(AudioQueue));
