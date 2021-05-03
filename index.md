@@ -8,7 +8,7 @@ A video player is a kind of media player for playing back digital video data fro
 
 ![Media players](https://user-images.githubusercontent.com/59049803/116826770-f2634180-ab95-11eb-9daf-203f6ced86fa.png)
 
-When it comes to video games, these are used to cinematically showcase situations that would not be efficiently shown through gameplay, or would otherwise bee too complex to process in real time, and are especially useful to impress the players by showcasing animation prowess, and help expand the creative options one has to convey emotions or ideas.
+When it comes to video games, these are used to cinematically showcase situations that would not be efficiently shown through gameplay, or would otherwise be too complex to process in real time, and are especially useful to impress the players by showcasing animation prowess, and help expand the creative options one has to convey emotions or ideas.
 
 ### Types of cutscenes in videogames
 
