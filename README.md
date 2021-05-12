@@ -16,4 +16,5 @@ Additional licenses will be included next to their respective assets inside the 
 
 ## Extra (Research presentation)
 [Drive Link](https://docs.google.com/presentation/d/1v8ONQmHAXpi9P0n0CAIeRVVznDVEWPPW-eDOwFD-c2k/edit?usp=sharing)
+
 [PDF Document](https://github.com/TitoLuce/Video-Player-Research/blob/main/Video%20Player%20Research.pdf)
