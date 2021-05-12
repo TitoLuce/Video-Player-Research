@@ -14,5 +14,5 @@ This project is licensed under an unmodified MIT license, which is an OSI-certif
 
 Additional licenses will be included next to their respective assets inside the game documents.
 
-##Extra (Research presentation)
+## Extra (Research presentation)
 [Drive Link](https://docs.google.com/presentation/d/1v8ONQmHAXpi9P0n0CAIeRVVznDVEWPPW-eDOwFD-c2k/edit?usp=sharing)
